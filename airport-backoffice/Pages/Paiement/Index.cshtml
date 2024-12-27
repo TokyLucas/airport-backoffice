@@ -1,0 +1,48 @@
+﻿@page
+@model airport_backoffice.Pages.Paiement.IndexModel
+@using System.Text.Json;
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index</h1>
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
+    var jsonData = "@(JsonSerializer.Serialize(Model.StatPaiements))";
+    jsonData = JSON.parse(jsonData.replace(/&quot;/g,'"'));
+    console.log(jsonData);
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: jsonData.map( item => item.Date_depart),
+            datasets: [
+                {
+                    label: 'Total economique',
+                    data: jsonData.map( item => item.Total_economique),
+                    borderWidth: 1
+                },
+                {
+                    label: 'Total affaire',
+                    data: jsonData.map( item => item.Total_affaire),
+                    borderWidth: 1
+                },
+                {
+                    label: 'Total premiere',
+                    data: jsonData.map( item => item.Total_premiere),
+                    borderWidth: 1
+                },
+            ]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
+</script>

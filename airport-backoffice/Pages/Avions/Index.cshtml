@@ -1,0 +1,66 @@
+﻿@page
+@model airport_backoffice.Pages.Avions.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Avion[0].Marque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avion[0].Modele)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avion[0].Immatriculation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avion[0].Nb_place_economique)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avion[0].Nb_place_affaire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avion[0].Nb_place_premiere)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Avion) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modele)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Immatriculation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nb_place_economique)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nb_place_affaire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nb_place_premiere)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Avion_id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Avion_id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Avion_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

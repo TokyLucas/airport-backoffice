@@ -1,0 +1,102 @@
+﻿@page
+@model airport_backoffice.Pages.Vols.IndexModel
+@using System.Collections.Generic
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<div class="w-100 overflow-auto">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @if ((int)ViewBag.CurrentPage - 1 > 0)
+            {
+                @* <li class="page-item"> *@
+                @*     <a class="page-link" aria-label="Previous"> *@
+                @*         <span aria-hidden="true">&laquo;</span> *@
+                @*     </a> *@
+                @* </li> *@
+                <li class="page-item"><a class="page-link" asp-page="./Index" asp-route-currentPage="@((int)ViewBag.CurrentPage - 1)">@((int)ViewBag.CurrentPage - 1)</a></li>
+            }
+            <li class="page-item"><a class="page-link fw-bold text-black">@ViewBag.CurrentPage</a></li>
+            <li class="page-item"><a class="page-link" asp-page="./Index" asp-route-currentPage="@((int)ViewBag.CurrentPage + 1)">@((int)ViewBag.CurrentPage + 1)</a></li>
+            @* <li class="page-item"> *@
+            @*     <a class="page-link" aria-label="Next"> *@
+            @*         <span aria-hidden="true">&raquo;</span> *@
+            @*     </a> *@
+            @* </li> *@
+        </ul>
+    </nav>
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>
+                Avion
+            <th>
+                Date de depart
+            </th>
+            <th>
+                Trajet
+            </th>
+            <th>
+                Classe Economique
+            </th>
+            <th>
+                Classe Affaire
+            </th>
+            <th>
+                Premiere classe
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Vol) {
+        <tr>
+            <td>
+                @item.Marque @item.Modele
+                <br />
+                N°: @item.Immatriculation
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_depart)
+            </td>
+            <td>
+                @item.Depart_ville - @item.Dest_ville
+            </td>
+            <td>
+                <span class="fw-bold">@(item.Nb_place_economique - item.Nb_place_economique_reserve)</span> places disponibles
+                <br />
+                    <span class="fw-bold">@item.Nb_place_economique_reserve</span> reservé sur <span class="fw-bold">@item.Nb_place_economique total</span>
+                <br />
+                <span class="fw-bold">@Html.DisplayFor(m => item.Prix_de_base_economique, "CurrencyFormatter")</span>
+            </td>
+            <td>
+                <span class="fw-bold">@(item.Nb_place_affaire - item.Nb_place_affaire_reserve)</span> places disponibles
+                <br />
+                    <span class="fw-bold">@item.Nb_place_affaire_reserve</span> reservé sur <span class="fw-bold">@item.Nb_place_affaire total</span>
+                <br />
+                <span class="fw-bold">@Html.DisplayFor(m => item.Prix_de_base_affaire, "CurrencyFormatter")</span>
+            </td>
+            <td>
+                <span class="fw-bold">@(item.Nb_place_premiere - item.Nb_place_premiere_reserve)</span> places disponibles
+                <br />
+                    <span class="fw-bold">@item.Nb_place_premiere_reserve</span> reservé sur <span class="fw-bold">@item.Nb_place_premiere total</span>
+                <br />
+                <span class="fw-bold">@Html.DisplayFor(m => item.Prix_de_base_premiere, "CurrencyFormatter")</span>
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Vol_id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Vol_id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Vol_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+    </table>
+</div>

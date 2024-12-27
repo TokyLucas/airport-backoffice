@@ -1,0 +1,55 @@
+﻿@page
+@model airport_backoffice.Pages.Avions.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Avion</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Avion.Marque)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Avion.Marque)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Avion.Modele)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Avion.Modele)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Avion.Immatriculation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Avion.Immatriculation)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Avion.Nb_place_economique)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Avion.Nb_place_economique)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Avion.Nb_place_affaire)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Avion.Nb_place_affaire)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Avion.Nb_place_premiere)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Avion.Nb_place_premiere)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Avion.Avion_id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

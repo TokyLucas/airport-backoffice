@@ -1,0 +1,75 @@
+﻿@page
+@model airport_backoffice.Pages.Vols.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Vol</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Vol.Vol_id" />
+            <div class="form-group">
+                
+                <label asp-for="Vol.Avion_id" class="control-label"></label>
+                @* <input asp-for="Vol.Avion_id" class="form-control" /> *@
+                <select asp-for="Vol.Avion_id" class="form-control" asp-items="ViewBag.Avions"></select>
+                <span asp-validation-for="Vol.Avion_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="Vol.Date_depart" class="control-label"></label>
+                <input asp-for="Vol.Date_depart" class="form-control" />
+                <span asp-validation-for="Vol.Date_depart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="Vol.Airport_depart" class="control-label"></label>
+                @* <input asp-for="Vol.Airport_depart" class="form-control" /> *@
+                <select asp-for="Vol.Airport_depart" class="form-control" asp-items="ViewBag.Airport"></select>
+                <span asp-validation-for="Vol.Airport_depart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="Vol.Airport_arrive" class="control-label"></label>
+                @* <input asp-for="Vol.Airport_arrive" class="form-control" /> *@
+                <select asp-for="Vol.Airport_arrive" class="form-control" asp-items="ViewBag.Airport"></select>
+                <span asp-validation-for="Vol.Airport_arrive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="Vol.Prix_de_base_economique" class="control-label"></label>
+                <input asp-for="Vol.Prix_de_base_economique" class="form-control" />
+                <span asp-validation-for="Vol.Prix_de_base_economique" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="Vol.Prix_de_base_affaire" class="control-label"></label>
+                <input asp-for="Vol.Prix_de_base_affaire" class="form-control" />
+                <span asp-validation-for="Vol.Prix_de_base_affaire" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <label asp-for="Vol.Prix_de_base_premiere" class="control-label"></label>
+                <input asp-for="Vol.Prix_de_base_premiere" class="form-control" />
+                <span asp-validation-for="Vol.Prix_de_base_premiere" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

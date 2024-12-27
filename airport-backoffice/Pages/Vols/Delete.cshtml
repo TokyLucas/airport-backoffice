@@ -1,0 +1,64 @@
+﻿@page
+@model airport_backoffice.Pages.Vols.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Vol</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vol.Avion_id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vol.Avion_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vol.Date_depart)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vol.Date_depart)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vol.Airport_depart)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vol.Airport_depart)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vol.Airport_arrive)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vol.Airport_arrive)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vol.Prix_de_base_economique)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vol.Prix_de_base_economique)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vol.Prix_de_base_affaire)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vol.Prix_de_base_affaire)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vol.Prix_de_base_premiere)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vol.Prix_de_base_premiere)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Vol.Vol_id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

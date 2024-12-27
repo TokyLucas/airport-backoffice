@@ -1,0 +1,114 @@
+﻿@page
+@model airport_backoffice.Pages.Vols.DetailsModel
+@using System.Text.Json;
+
+@{
+    ViewData["Title"] = "Details";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<h1>Details</h1>
+
+<div class="row justify-content-between">
+    <div class="col-md-4">
+        <h4>Vol</h4>
+        <hr />
+        <dl class="col">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vol.Avion_id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vol.Avion_id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vol.Date_depart)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vol.Date_depart)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vol.Airport_depart)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vol.Airport_depart)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vol.Airport_arrive)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vol.Airport_arrive)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vol.Prix_de_base_economique)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vol.Prix_de_base_economique)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vol.Prix_de_base_affaire)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vol.Prix_de_base_affaire)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Vol.Prix_de_base_premiere)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Vol.Prix_de_base_premiere)
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <h4>Reservations</h4>
+        <hr />
+        <div class="overflow-auto" style="height: 500px">
+            <table class="table table-striped border">
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Places</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var clients in Model.ClientAyantReserve)
+                    {
+                        <tr>
+                            <td>
+                                @clients.Nom @clients.Prenom
+                                <br />
+                                <span class="text-muted">@clients.Email</span>
+                            </td>
+                            <td>
+                                @(clients.Nb_place_economique + clients.Nb_place_affaire + clients.Nb_place_premiere) places reservées
+                                <br />
+                                <span class="text-muted">
+                                    @clients.Nb_place_economique economiques / 
+                                    @clients.Nb_place_affaire affaires /
+                                    @clients.Nb_place_premiere première
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <a id="SaveXlsButton"class="btn btn-success">Exporter en .xls</a>
+        <script>
+            var jsonData = "@(JsonSerializer.Serialize(Model.ClientAyantReserve))";
+            jsonData = JSON.parse(jsonData.replace(/&quot;/g,'"'));
+            console.log(jsonData);
+
+            function exportJsonToExcel() {
+                const workbook = XLSX.utils.book_new();
+                const worksheet = XLSX.utils.json_to_sheet(jsonData);
+                XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+                XLSX.writeFile(workbook, "Liste reservation par Client vol N° @Model.Vol.Vol_id - @Model.Vol.Depart_ville a @Model.Vol.Dest_ville - @Model.Vol.Date_depart .xlsx");
+            }
+
+            document.getElementById("SaveXlsButton").addEventListener("click", exportJsonToExcel);
+        </script>
+    </div>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Vol.Vol_id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
