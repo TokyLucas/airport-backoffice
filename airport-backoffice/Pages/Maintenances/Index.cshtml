@@ -1,0 +1,60 @@
+﻿@page
+@model airport_backoffice.Pages.Maintenances.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Maintenance[0].Avion_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maintenance[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maintenance[0].Date_debut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maintenance[0].Date_fin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maintenance[0].Montant)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Maintenance) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Avion_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_debut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_fin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Montant)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Maintenance_id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Maintenance_id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Maintenance_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -11,6 +11,9 @@
     <hr />
     <div class="row">
     <div class="col-md-4">
+    @if (ViewData["Erreur"] != null){
+        <p class="alert alert-danger">@ViewData["Erreur"]</p>
+    }
     <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">

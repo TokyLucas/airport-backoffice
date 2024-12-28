@@ -1,0 +1,52 @@
+﻿@page
+@model airport_backoffice.Pages.Maintenances.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Maintenance</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Maintenance.Avion_id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Maintenance.Avion_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Maintenance.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Maintenance.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Maintenance.Date_debut)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Maintenance.Date_debut)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Maintenance.Date_fin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Maintenance.Date_fin)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Maintenance.Montant)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Maintenance.Montant)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Maintenance.Maintenance_id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

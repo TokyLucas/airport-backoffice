@@ -36,19 +36,7 @@
         <main role="main" class="">
             <div class="d-flex justify-content-start h-100">
                 <div class="d-none d-sm-block p-3" style="width: 225px!important;">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" asp-page="/Vols/Index">
-                                <i class="bi bi-globe-americas"></i>&nbsp;&nbsp; Vols
-                            </a>
-                            <a class="nav-link" aria-current="page" asp-page="/Avions/Index">
-                                <i class="bi bi-airplane-fill"></i>&nbsp;&nbsp; Avions
-                            </a>
-                            <a class="nav-link" aria-current="page" asp-page="/Paiement/Index">
-                                <i class="bi bi-clipboard-data-fill"></i>&nbsp;&nbsp; Paiement
-                            </a>
-                        </li>
-                    </ul>
+                    <component type="typeof(airport_backoffice.Components.Navs)" render-mode="ServerPrerendered" />
                 </div>
                 <div class="flex-fill overflow-auto px-5 py-3 border-start bg-light">
                     <div class="px-3 py-2 border rounded bg-white">
