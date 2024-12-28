@@ -1,0 +1,55 @@
+﻿@page
+@model airport_backoffice.Pages.Maintenances.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>Maintenance</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Maintenance.Avion_id" class="control-label"></label>
+                @* <input asp-for="Maintenance.Avion_id" class="form-control" /> *@
+                <select asp-for="Maintenance.Avion_id" class="form-control" asp-items="ViewBag.Avions"></select>
+                <span asp-validation-for="Maintenance.Avion_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Maintenance.Description" class="control-label"></label>
+                <input asp-for="Maintenance.Description" class="form-control" />
+                <span asp-validation-for="Maintenance.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Maintenance.Date_debut" class="control-label"></label>
+                <input asp-for="Maintenance.Date_debut" class="form-control" type="date"/>
+                <span asp-validation-for="Maintenance.Date_debut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Maintenance.Date_fin" class="control-label"></label>
+                <input asp-for="Maintenance.Date_fin" class="form-control" type="date" />
+                <span asp-validation-for="Maintenance.Date_fin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Maintenance.Montant" class="control-label"></label>
+                <input asp-for="Maintenance.Montant" class="form-control" />
+                <span asp-validation-for="Maintenance.Montant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

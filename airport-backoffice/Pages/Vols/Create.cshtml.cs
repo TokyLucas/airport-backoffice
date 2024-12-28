@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using airport_backoffice.Data;
 using airport_backoffice.Models;
+using airport_backoffice.Services;
 
 namespace airport_backoffice.Pages.Vols
 {
@@ -33,8 +34,29 @@ namespace airport_backoffice.Pages.Vols
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+
+            var checkVol = _context.Vol
+                            .Where(m => m.Avion_id == Vol.Avion_id)
+                            .Where(m => DateOnly.FromDateTime(m.Date_depart) == DateOnly.FromDateTime(Vol.Date_depart))
+                            .ToList();
+            var checkMaintenance = _context.Maintenance
+                                .Where(m => m.Avion_id == Vol.Avion_id)
+                                .Where(
+                                    m => m.Date_debut <= DateOnly.FromDateTime(Vol.Date_depart) && m.Date_fin >= DateOnly.FromDateTime(Vol.Date_depart)
+                                )
+                                .ToList();
             if (!ModelState.IsValid)
             {
+                return Page();
+            }
+            if (checkVol.Count > 0)
+            {
+                ViewData["Erreur"] = "Avion deja affecté a un vol ce jour";
+                return Page();
+            }
+            else if (checkMaintenance.Count > 0)
+            {
+                ViewData["Erreur"] = "Avion en maintenance ce jour";
                 return Page();
             }
 

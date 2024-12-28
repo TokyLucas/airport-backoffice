@@ -1,0 +1,31 @@
+﻿@inject airport_backoffice.Data.airport_backofficeContext _context;
+@using airport_backoffice.Models;
+
+<ul class="nav flex-column">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/Vols/Index">
+            <i class="bi bi-globe-americas"></i>&nbsp;&nbsp; Vols
+        </a>
+        <a class="nav-link" aria-current="page" href="/Avions/Index">
+            <i class="bi bi-airplane-fill"></i>&nbsp;&nbsp; Avions
+            <span class="badge bg-danger">@Avion.Count</span>
+        </a>
+        <a class="nav-link" aria-current="page" href="/Paiement/Index">
+            <i class="bi bi-clipboard-data-fill"></i>&nbsp;&nbsp; Paiement
+        </a>
+        <a class="nav-link" aria-current="page" href="/Maintenances/Index">
+            <i class="bi bi-wrench-adjustable-circle-fill"></i>&nbsp;&nbsp; Maintenance
+        </a>
+    </li>
+</ul>
+
+@code {
+    public IList<MaintenanceDetails> Avion { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Avion =  _context.MaintenanceDetails
+                .Where(m => m.Difference_dernier_maintenance > 30 || m.Difference_dernier_maintenance == -1)
+                .ToList();
+    }
+}

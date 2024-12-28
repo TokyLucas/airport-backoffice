@@ -20,5 +20,7 @@ namespace airport_backoffice.Data
         public DbSet<airport_backoffice.Models.VolDetails> VolDetails { get; set; } = default!;
         public DbSet<airport_backoffice.Models.ClientAyantReserve> ClientAyantReserve { get; set; } = default!;
         public DbSet<airport_backoffice.Models.StatPaiement> StatPaiement { get; set; } = default!;
+        public DbSet<airport_backoffice.Models.Maintenance> Maintenance { get; set; } = default!;
+        public DbSet<airport_backoffice.Models.MaintenanceDetails> MaintenanceDetails { get; set; } = default!;
     }
 }

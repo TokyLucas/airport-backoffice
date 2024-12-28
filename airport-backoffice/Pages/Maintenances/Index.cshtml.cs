@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using airport_backoffice.Data;
 using airport_backoffice.Models;
 
-namespace airport_backoffice.Pages.Avions
+namespace airport_backoffice.Pages.Maintenances
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace airport_backoffice.Pages.Avions
             _context = context;
         }
 
-        public IList<MaintenanceDetails> Avion { get;set; } = default!;
+        public IList<Maintenance> Maintenance { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Avion = await _context.MaintenanceDetails.ToListAsync();
+            Maintenance = await _context.Maintenance.ToListAsync();
         }
     }
 }
